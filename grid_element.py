@@ -1,8 +1,4 @@
-import pygame
-from pygame import draw, font
-
-import sys
-
+from pygame import draw
 class GridElement:
     """
     GridElement used as a tile in the exercise
@@ -123,6 +119,8 @@ class GridElement:
         self.mouse_image = mouse_image
 
         # draws a cat_image
+        print(self.mouse)
+        print(self.mouse.position)
         cat_image_rect = self.cat_image.get_rect(topleft=(self.cat.position[0] * self.size[0], self.cat.position[1] * self.size[1]))
         surface.blit(self.cat_image, cat_image_rect)
 

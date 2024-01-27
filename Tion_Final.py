@@ -5,27 +5,18 @@ import time
 
 from helpers.constants import Constants
 from maze import Maze
-from cat import Cat
+
 
 
 
 
 class Game:
     def __init__(self):
-        self.active = True
         pygame.init()
         self.size = (Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT)
         self.screen = pygame.display.set_mode(self.size)
-        self.cats = []  # List to store cats
-        self.num_cats = 2  # Number of cats
         self.maze = Maze(Constants.GRID_COLS, Constants.GRID_ROWS, self.size)
         self.maze.generate_maze()
-        # Create and initialize cats
-        for _ in range(self.num_cats):
-            cat = Cat()  # Create a new cat
-            self.cats.append(cat)  # Add the cat to the list
-        #self.cat = Cat(self.maze)  # Create a new cat
-
         self.cat_image = pygame.image.load("cat4.png")
         self.cat_image = pygame.transform.scale(self.cat_image, (30, 30))
         self.mouse_image = pygame.image.load("mouse4.png")
@@ -43,18 +34,11 @@ class Game:
 
 
     def update_game(self):
-        self.gameover()
-        """Every try make the start node move towards the goal"""
-        for cat in self.cats:
-            if cat.best_move is not None:
-                self.maze.set_cat(self.maze.grid[cat.best_move[0]][cat.best_move[1]])
-
-        # if self.cat.best_move is not None:
-        #     self.maze.set_cat(self.maze.grid[self.cat.best_move[0]][self.cat.best_move[1]])
-
+        #self.gameover_handling()
+        self.maze.update()
 
     def draw_components(self):
-        if self.active:
+        if self.maze.active:
             self.screen.fill([64, 64, 64])
             self.maze.draw_maze(self.screen, self.cat_image, self.mouse_image)
             pygame.display.flip()
@@ -88,16 +72,16 @@ class Game:
             self.maze.generate_room()
         if event.key == pygame.K_UP:
             #print("UP")
-            self.move_mouse(0, -1)
+            self.maze.move_mouse(0, -1)
         if event.key == pygame.K_DOWN:
             #print("DOWN")
-            self.move_mouse(0, 1)
+            self.maze.move_mouse(0, 1)
         if event.key == pygame.K_LEFT:
             #print("LEFT")
-            self.move_mouse(-1, 0)
+            self.maze.move_mouse(-1, 0)
         if event.key == pygame.K_RIGHT:
             #print("RIGHT")
-            self.move_mouse(1, 0)
+            self.maze.move_mouse(1, 0)
 
     def handle_key_up(self, event):
         pass
@@ -116,20 +100,6 @@ class Game:
     def handle_mouse_released(self, event):
         pass
 
-    def move_mouse(self, dx, dy):
-        current_mouse = self.maze.get_mouse()
-        if current_mouse:
-            new_mouse_x = max(0, min(current_mouse.position[0] + dx, self.maze.grid_size[0] - 1))
-            new_mouse_y = max(0, min(current_mouse.position[1] + dy, self.maze.grid_size[1] - 1))
-
-            # Check if there is a link between the current position and the new position
-            if self.maze.grid[new_mouse_x][new_mouse_y] in current_mouse.get_neighbours():
-                self.maze.set_mouse(self.maze.grid[new_mouse_x][new_mouse_y])
-                for cat in self.cats:
-                    cat.algorithm(self.maze)
-                #self.cat.a_star_search()
-
-
     def recognize_speech(self):
         print("Speech recognition activated ")
         with self.microphone as listen:
@@ -141,16 +111,16 @@ class Game:
             print("You said:", speech)
             if "down" in speech:
                 print("Recognized down")
-                self.move_mouse(0, 1)
+                self.maze.move_mouse(0, 1)
             if "up" in speech:
                 print("Recognized up")
-                self.move_mouse(0, -1)
+                self.maze.move_mouse(0, -1)
             if "right" in speech:
                 print("Recognized right")
-                self.move_mouse(1, 0)
+                self.maze.move_mouse(1, 0)
             if "left" in speech:
                 print("Recognized left")
-                self.move_mouse(-1, 0)
+                self.maze.move_mouse(-1, 0)
         except sr.WaitTimeoutError:
             print("Too slow talking")
         except sr.RequestError as e:
@@ -158,27 +128,13 @@ class Game:
         except sr.UnknownValueError:
             print("Couldn't understand")
 
-    def gameover(self):
-        for cat in self.cats:
-            if cat.gameover is True:
-                self.active = bool(False)
-                self.maze.set_cat(self.maze.grid[0][0])
-                self.maze.set_mouse(self.maze.grid[-1][-1])
-                # Display the black screen
-                self.screen.blit(self.blackscreen, (0, 0))
-                pygame.display.flip()
-                time.sleep(3)
-                sys.exit()
-        # if self.cat.gameover is True:
-        #     self.active = bool(False)
-        #     self.maze.set_cat(self.maze.grid[0][0])
-        #     self.maze.set_mouse(self.maze.grid[-1][-1])
-        #     # Display the black screen
-        #     self.screen.blit(self.blackscreen, (0, 0))
-        #     pygame.display.flip()
-        #     time.sleep(3)
-        #     sys.exit()
-
+    def gameover_handling(self):
+        self.maze.gameover()
+        # Display the black screen
+        self.screen.blit(self.blackscreen, (0, 0))
+        pygame.display.flip()
+        time.sleep(3)
+        sys.exit()
 
 if __name__ == "__main__":
     game = Game()
