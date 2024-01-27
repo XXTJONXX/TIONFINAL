@@ -22,7 +22,7 @@ class Game:
         self.maze.generate_maze()
         # Create and initialize cats
         for _ in range(self.num_cats):
-            cat = Cat(self.maze)  # Create a new cat
+            cat = Cat()  # Create a new cat
             self.cats.append(cat)  # Add the cat to the list
         #self.cat = Cat(self.maze)  # Create a new cat
 
@@ -126,7 +126,7 @@ class Game:
             if self.maze.grid[new_mouse_x][new_mouse_y] in current_mouse.get_neighbours():
                 self.maze.set_mouse(self.maze.grid[new_mouse_x][new_mouse_y])
                 for cat in self.cats:
-                    cat.a_star_search()
+                    cat.algorithm(self.maze)
                 #self.cat.a_star_search()
 
 

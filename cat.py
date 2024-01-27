@@ -1,30 +1,29 @@
 import random
 import sys
 from datetime import datetime
-from maze import Maze
+
+from helpers.constants import Constants
+
 import pygame
 import bisect
-from maze import Maze
+
 
 
 class Cat:
-    def __init__(self, maze):
+    def __init__(self):
         # Initialize the search algorithm with the given maze
         self.neighbours = []
-        self.maze = maze
         self.best_move = None
         self.f_score = None
         self.gameover = bool(False)
         #self.position = self.maze.grid[Constants.GRID_COLS-1] [Constants.GRID_ROWS-1]    #x and y values of the cells in the grid
 
+    def algorithm(self, maze):
+        self.maze = maze
+        self.a_star_search(maze)
 
-    # def draw_cat(self, surface):
-    #     pass
-    #
-    # def move_cat(self, x, y):
-    #     self.set_cat(self.maze.grid[x][y])
-    def a_star_search(self):
-
+    def a_star_search(self, maze):
+        self.maze = maze
         # Initialize a priority queue with the cat_position cell
         priority_queue = [self.maze.cat_position]
         visited = []
@@ -75,9 +74,10 @@ class Cat:
             self.gameover = bool(True)
 
         # Highlight the path from the mouse to the cat_position cell
-        self.highlight_path()
+        self.highlight_path(self.maze)
 
-    def highlight_path(self):
+    def highlight_path(self, maze):
+        self.maze = maze
         # checks the path from the mouse to the cat_position cell
         current_cell = self.maze.mouse.parent
         while current_cell is not None and current_cell.parent is not None: #Continue the loop as long as current_cell is not at the cat_position cell(noone) and it has a parent.
