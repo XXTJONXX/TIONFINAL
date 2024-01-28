@@ -77,6 +77,7 @@ class Maze:
                 self.reset_state()
 
     def move_mouse(self, dx, dy):
+        print("-------MOVE MOUSE: x=" + str(dx) + ", y=" + str(dy))
         if self.mouse.cell:
             new_mouse_x = max(0, min(self.mouse.cell.position[0] + dx, self.grid_size[0] - 1))
             new_mouse_y = max(0, min(self.mouse.cell.position[1] + dy, self.grid_size[1] - 1))
@@ -136,6 +137,7 @@ class Maze:
      """
 
     def generate_maze(self):
+        print("-------GENERATE MAZE")
         self.reset_all()
         for cat in self.cats:
             wait = [cat.cell]
@@ -273,13 +275,7 @@ class Maze:
         self.del_link(self.grid[self.grid_size[0] - 1][block_y], self.grid[self.grid_size[0] - 1][block_y - 1])
 
     def gameover(self):
-        # for cat in self.cats:
-        #     if cat.gameover is True:
-        #         self.active = bool(False)
-        #         self.set_cat(self.grid[0][0])
-        #         self.set_mouse(self.grid[-1][-1])
-        print(self.cat.gameover)
-        if self.cat.gameover is True:
-            self.active = bool(False)
-            self.set_cat(self.grid[0][0])
-            self.set_mouse(self.grid[-1][-1])
+        for cat in self.cats:
+            if cat.gameover is True:
+                print("gameover statement")
+                self.active = bool(False)

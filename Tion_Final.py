@@ -31,6 +31,7 @@ class Game:
 
     def update_game(self):
         self.maze.update()
+        self.gameover_handling()
 
     def draw_components(self):
         if self.maze.active:
@@ -128,13 +129,22 @@ class Game:
         except sr.UnknownValueError:
             print("Couldn't understand")
 
-    def gameover_handling(self):
-        self.maze.gameover()
-        # Display the black screen
+    def stopGame(self):
         self.screen.blit(self.black_screen, (0, 0))
         pygame.display.flip()
         time.sleep(3)
         sys.exit()
+
+    def gameover_handling(self):
+        print("GAMEOVER? MAZE active ? = ")
+        print(self.maze.active)
+        self.maze.gameover()
+        if self.maze.active is False:
+            # Display the black screen
+            self.screen.blit(self.black_screen, (0, 0))
+            pygame.display.flip()
+            time.sleep(3)
+            sys.exit()
 
 if __name__ == "__main__":
     game = Game()
