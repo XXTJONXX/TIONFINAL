@@ -6,10 +6,6 @@ import time
 from helpers.constants import Constants
 from maze import Maze
 
-
-
-
-
 class Game:
     def __init__(self):
         pygame.init()
@@ -17,12 +13,8 @@ class Game:
         self.screen = pygame.display.set_mode(self.size)
         self.maze = Maze(Constants.GRID_COLS, Constants.GRID_ROWS, self.size)
         self.maze.generate_maze()
-        self.cat_image = pygame.image.load("cat4.png")
-        self.cat_image = pygame.transform.scale(self.cat_image, (30, 30))
-        self.mouse_image = pygame.image.load("mouse4.png")
-        self.mouse_image = pygame.transform.scale(self.mouse_image, (20, 20))
-        self.blackscreen = pygame.image.load("gameover.jpg")
-        self.blackscreen = pygame.transform.scale(self.blackscreen, (self.size))
+        self.black_screen = pygame.image.load("gameover.jpg")
+        self.black_screen = pygame.transform.scale(self.black_screen, (self.size))
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
 
@@ -34,13 +26,12 @@ class Game:
 
 
     def update_game(self):
-        #self.gameover_handling()
         self.maze.update()
 
     def draw_components(self):
         if self.maze.active:
             self.screen.fill([64, 64, 64])
-            self.maze.draw_maze(self.screen, self.cat_image, self.mouse_image)
+            self.maze.draw_maze(self.screen)
             pygame.display.flip()
 
     def handle_events(self):
@@ -131,7 +122,7 @@ class Game:
     def gameover_handling(self):
         self.maze.gameover()
         # Display the black screen
-        self.screen.blit(self.blackscreen, (0, 0))
+        self.screen.blit(self.black_screen, (0, 0))
         pygame.display.flip()
         time.sleep(3)
         sys.exit()
