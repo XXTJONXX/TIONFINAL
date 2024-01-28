@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="beste versie anno 22:57">
+    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="beste versie anno 00:29 zonder comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tion_Final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tion_Final.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cat.py" beforeDir="false" afterPath="$PROJECT_DIR$/cat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grid_element.py" beforeDir="false" afterPath="$PROJECT_DIR$/grid_element.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speechrecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/speechrecognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706479042922</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="beste versie anno 00:29 zonder comments">
+      <option name="closed" value="true" />
+      <created>1706484583279</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706484583281</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -204,6 +212,7 @@
     <MESSAGE value="Bestwerkendelaatsteversie" />
     <MESSAGE value="beste versie anno 22:26" />
     <MESSAGE value="beste versie anno 22:57" />
-    <option name="LAST_COMMIT_MESSAGE" value="beste versie anno 22:57" />
+    <MESSAGE value="beste versie anno 00:29 zonder comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="beste versie anno 00:29 zonder comments" />
   </component>
 </project>

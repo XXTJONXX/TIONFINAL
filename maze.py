@@ -282,7 +282,7 @@ class Maze:
     def is_game_over(self):
         stop_game = False
         for cat in self.cats:
-            if cat.gameover is True:
+            if cat.game_over is True:
                 print("One Cat is Game Over")
                 stop_game = True
         return stop_game
