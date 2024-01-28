@@ -112,21 +112,25 @@ class GridElement:
     Draw the GridElement
     """
 
-    def draw_grid_element(self, surface, cat, mouse, cat_image, mouse_image):
-        self.cat = cat
-        self.mouse = mouse
-        self.cat_image = cat_image
-        self.mouse_image = mouse_image
-
-        # draws a cat_image
-        print(self.mouse)
-        print(self.mouse.position)
-        cat_image_rect = self.cat_image.get_rect(topleft=(self.cat.position[0] * self.size[0], self.cat.position[1] * self.size[1]))
-        surface.blit(self.cat_image, cat_image_rect)
-
+    def draw_grid_element(self, surface, cats, mouse):
         #draws a mouse_image
-        mouse_image_rect = self.mouse_image.get_rect(topleft=(self.mouse.position[0] * self.size[0], self.mouse.position[1] * self.size[1]))
-        surface.blit(self.mouse_image, mouse_image_rect)
+        mouse_image_rect = mouse.image.get_rect(topleft=(mouse.cell.position[0] * self.size[0], mouse.cell.position[1] * self.size[1]))
+        surface.blit(mouse.image, mouse_image_rect)
+        #draw cats
+        for cat in cats:
+            cat_image_rect = cat.image.get_rect(
+                topleft=(cat.cell.position[0] * self.size[0], cat.cell.position[1] * self.size[1]))
+            surface.blit(cat.image, cat_image_rect)
+
+    # def draw_cat(self, cat, surface, cat_image):
+    #     self.cat_image = cat_image
+    #     self.cat = cat
+    #     # draws a cat_image
+    #     #print(self.mouse)
+    #     #print(self.mouse.position)
+    #     cat_image_rect = self.cat_image.get_rect(topleft=(cat.position[0] * self.size[0], cat.position[1] * self.size[1]))
+    #     surface.blit(self.cat_image, cat_image_rect)
+
 
 
         # discard the directions where neighbours are

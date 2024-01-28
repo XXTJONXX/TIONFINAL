@@ -2,31 +2,33 @@ import bisect
 
 
 
+import pygame
 class Cat:
-    def __init__(self, position):
+    def __init__(self, cell):
         # Initialize the search algorithm with the given maze
         self.neighbours = []
         self.best_move = None
         self.f_score = None
         self.gameover = bool(False)
-        self.position = position
-        #self.position = self.maze.grid[Constants.GRID_COLS-1] [Constants.GRID_ROWS-1]    #x and y values of the cells in the grid
+        self.cell = cell
+        self.image = pygame.image.load("cat4.png")
+        self.image = pygame.transform.scale(self.image, (30, 30))
 
-    # def algorithm(self, maze):
-    #     self.maze = maze
-    #     self.a_star_search(maze)
+    def set_position(self, cell):
+        if cell != self.cell:
+            self.cell = cell
 
-    def a_star_search(self, mouse_position):
-        self.mouse_position = mouse_position
+    def a_star_search(self, mouse_cell):
+
         # Initialize a priority queue with the cat_position cell
-        priority_queue = [self.position]
+        priority_queue = [self.cell]
         visited = []
 
         while len(priority_queue) > 0:
             # Get the cell with the lowest f_score from the priority queue
             current_cell = priority_queue.pop(0)
 
-            if current_cell != self.mouse_position:
+            if current_cell != mouse_cell:
                 # If the current cell is not the mouse cell, continue the search
 
                 # Mark the current cell as visited
@@ -40,7 +42,7 @@ class Cat:
 
                         # Calculate the f_score (distance + heuristic) for the neighbor
                         self.f_score = current_cell.get_distance()
-                        score = next_cell.manhattan_distance(self.mouse_position)
+                        score = next_cell.manhattan_distance(mouse_cell)
 
                         # Add the f_score to the heuristic score
                         if self.f_score is not None:
@@ -69,15 +71,15 @@ class Cat:
             self.gameover = bool(True)
 
         # Highlight the path from the mouse to the cat_position cell
-        self.highlight_path()
+        self.highlight_path(mouse_cell)
 
-    def highlight_path(self):
+    def highlight_path(self, mouse_cell):
         # checks the path from the mouse to the cat_position cell
-        current_cell = self.mouse_position.parent
+        current_cell = mouse_cell.parent
         while current_cell is not None and current_cell.parent is not None: #Continue the loop as long as current_cell is not at the cat_position cell(noone) and it has a parent.
 
             #if current_cell.parent == self.maze.cat_position:
-            if current_cell.parent == self.position:
+            if current_cell.parent == self.cell:
                 # If the parent of the current cell is the cat_position cell, set the best_move
                 self.best_move = current_cell.get_position()
 
