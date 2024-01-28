@@ -76,30 +76,9 @@ class Cat:
             # Highlight the path from the mouse to the cat_position cell
             self.best_move_finder(mouse_cell)
 
-    # def highlight_path(self, mouse_cell):
-    #     # checks the path from the mouse to the cat_position cell
-    #     print(self," mouseposition ",mouse_cell)
-    #     print(self," mouse Parent ",mouse_cell.parent)
-    #     current_cell = mouse_cell.parent
-    #
-    #     # Continue the loop as long as current_cell is not at the cat_position cell(none) and it has a parent.
-    #     count = 0
-    #     while current_cell is not None and current_cell.parent is not None:
-    #         count = count + 1
-    #         if count < 100:
-    #             print(self," current_cell = ",current_cell,", current_cell.parent = ", current_cell.parent)
-    #         # if current_cell.parent == self.maze.cat_position:
-    #
-    #         if current_cell.parent == self.cell:
-    #             # If the parent of the current cell is the cat_position cell, set the best_move
-    #             self.best_move = current_cell.get_position()
-    #
-    #         current_cell = current_cell.parent
-    #     print("BEST MOVE...", self, " current_cell = ", current_cell, ", current_cell.parent = ", current_cell.parent)
-
     def best_move_finder(self, mouse_cell):
         current_cell = mouse_cell.parent        #current cell is in de fastest path de cel VOORDAT hij dezelfde locatie heeft als de muis
-        print("current_cell", current_cell)
+        #print("current_cell", current_cell)
         shortest_path = []
         while current_cell is not None and current_cell != self.cell:
 

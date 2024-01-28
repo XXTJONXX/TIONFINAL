@@ -1,10 +1,11 @@
 import sys
-import speech_recognition as sr
+
 import pygame
 import time
 
 from helpers.constants import Constants
 from maze import Maze
+from speechrecognition import Speechrecognition
 
 class Game:
     def __init__(self):
@@ -13,14 +14,10 @@ class Game:
         self.screen = pygame.display.set_mode(self.size)
         self.maze = Maze(Constants.GRID_COLS, Constants.GRID_ROWS, self.size)
         self.maze.generate_maze()
+        self.sr = Speechrecognition()
         self.black_screen = pygame.image.load("gameover.jpg")
         self.black_screen = pygame.transform.scale(self.black_screen, (self.size))
-        self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
-        self.UP = ["up","above","aloft","elevated","skyward","upward","overhead","high","ascendant","onward","upstairs","cup","pup","sup","cusp","pup","hiccough","kup","pup","rup","thrup","tup","yup",]#generated with chatgpt
-        self.DOWN = ["down","Descend","Lower","Drop","Decline","Descending","Sink","Fall","Town","Brown","Clown","Frown","Crown","Gown","Hound","Pound","Round","Sound","Bound","Wound"]#generated with chatgpt, evaluated by me
-        self.RIGHT = ["right","East","Eastward","Starboard","Light","Fight","Bite","Sight","Knight","Height","Might","Tight","Write","Bright"]#generated with chatgpt, evaluated by me
-        self.LEFT = ["left", "west", "Cleft", "Bereft","Theft","Heft","Deft","Craft","Lefty","Weft","Shaft","Thrift"]#generated with chatgpt, evaluated by me
+
 
     def game_loop(self):
         self.handle_events()
@@ -59,7 +56,8 @@ class Game:
             print("Generating Maze")
             self.maze.generate_maze()
         if event.key == pygame.K_t:
-            self.recognize_speech()
+            #self.sr.recognize_speech()
+            self.action_list = self.sr.recognize_speech()
         if event.key == pygame.K_o:
             print("Generating Obstacle")
             self.maze.generate_obstacles()
@@ -68,17 +66,26 @@ class Game:
             self.maze.generate_room()
         if event.key == pygame.K_UP:
             #print("UP")
-            self.maze.move_mouse(0, -1)
+            #self.maze.move_mouse(0, -1)
+            self.action_list = [[0,-1]]
         if event.key == pygame.K_DOWN:
             #print("DOWN")
-            self.maze.move_mouse(0, 1)
+            #self.maze.move_mouse(0, 1)
+            self.action_list = [[0,1]]
         if event.key == pygame.K_LEFT:
             #print("LEFT")
-            self.maze.move_mouse(-1, 0)
+            #self.maze.move_mouse(-1, 0)
+            self.action_list = [[-1,0]]
         if event.key == pygame.K_RIGHT:
             #print("RIGHT")
-            self.maze.move_mouse(1, 0)
+            #self.maze.move_mouse(1, 0)
+            self.action_list = [[1,0]]
 
+        if (self.action_list):
+            for move in self.action_list:
+                x = move[0]
+                y = move[1]
+                self.maze.move_mouse(x,y)
     def handle_key_up(self, event):
         pass
 
@@ -96,38 +103,38 @@ class Game:
     def handle_mouse_released(self, event):
         pass
 
-    def recognize_speech(self):
-        print("Speech recognition activated ")
-        with self.microphone as listen:
-            self.recognizer.adjust_for_ambient_noise(listen)
-            print("Say something:")
-            audio = self.recognizer.listen(listen, timeout=2, phrase_time_limit=5)  # Adjust timeout as needed
-        try:
-            speech = self.recognizer.recognize_google(audio)
-            print("You said:", speech)
-
-            words_list = speech.split()
-            print(words_list)
-            for word in words_list:
-                if word in self.DOWN:
-                    print("Recognized down")
-                    self.maze.move_mouse(0, 1)
-                if word in self.UP:
-                    print("Recognized up")
-                    self.maze.move_mouse(0, -1)
-                if word in self.RIGHT:
-                    print("Recognized right")
-                    self.maze.move_mouse(1, 0)
-                if word in self.LEFT:
-                    print("Recognized left")
-                    self.maze.move_mouse(-1, 0)
-
-        except sr.WaitTimeoutError:
-            print("Too slow talking")
-        except sr.RequestError as e:
-            print(f"Could not connect to the Google Speech Recognition API: {e}")
-        except sr.UnknownValueError:
-            print("Couldn't understand")
+    # def recognize_speech(self):
+    #     print("Speech recognition activated ")
+    #     with self.microphone as listen:
+    #         self.recognizer.adjust_for_ambient_noise(listen)
+    #         print("Say something:")
+    #         audio = self.recognizer.listen(listen, timeout=2, phrase_time_limit=5)  # Adjust timeout as needed
+    #     try:
+    #         speech = self.recognizer.recognize_google(audio)
+    #         print("You said:", speech)
+    #
+    #         words_list = speech.split()
+    #         print(words_list)
+    #         for word in words_list:
+    #             if word in self.DOWN:
+    #                 print("Recognized down")
+    #                 self.maze.move_mouse(0, 1)
+    #             if word in self.UP:
+    #                 print("Recognized up")
+    #                 self.maze.move_mouse(0, -1)
+    #             if word in self.RIGHT:
+    #                 print("Recognized right")
+    #                 self.maze.move_mouse(1, 0)
+    #             if word in self.LEFT:
+    #                 print("Recognized left")
+    #                 self.maze.move_mouse(-1, 0)
+    #
+    #     except sr.WaitTimeoutError:
+    #         print("Too slow talking")
+    #     except sr.RequestError as e:
+    #         print(f"Could not connect to the Google Speech Recognition API: {e}")
+    #     except sr.UnknownValueError:
+    #         print("Couldn't understand")
 
     def gameover_handling(self):
         if self.maze.is_game_over():

@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="Bestwerkendelaatsteversie">
+    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="beste versie anno 22:26">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tion_Final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tion_Final.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cat.py" beforeDir="false" afterPath="$PROJECT_DIR$/cat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/mouse.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +136,31 @@
       <option name="project" value="LOCAL" />
       <updated>1706454026604</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bestwerkendelaatsteversie">
+      <option name="closed" value="true" />
+      <created>1706477112821</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706477112821</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Bestwerkendelaatsteversie">
+      <option name="closed" value="true" />
+      <created>1706477203463</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706477203463</updated>
+    </task>
+    <task id="LOCAL-00011" summary="beste versie anno 22:26">
+      <option name="closed" value="true" />
+      <created>1706477224286</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706477224286</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,7 +191,9 @@
     <MESSAGE value="BETERE versie" />
     <MESSAGE value="kapot nog" />
     <MESSAGE value="werkt heel goed" />
+    <MESSAGE value="Dit is de beste versie anno 22:25" />
     <MESSAGE value="Bestwerkendelaatsteversie" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bestwerkendelaatsteversie" />
+    <MESSAGE value="beste versie anno 22:26" />
+    <option name="LAST_COMMIT_MESSAGE" value="beste versie anno 22:26" />
   </component>
 </project>

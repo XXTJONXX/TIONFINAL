@@ -29,7 +29,7 @@ class Maze:
         """make cats"""
         #self.cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)])  # Create a new cat
         self.cats = []  # List to store cats
-        self.num_cats = 5  # Number of cats
+        self.num_cats = 2  # Number of cats
         # Create and initialize cats
         for number in range(self.num_cats):
             cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)], number)  # Create a new cat
