@@ -13,7 +13,7 @@ class Cat:
         self.cell = cell
         self.image = pygame.image.load("cat4.png")
         self.image = pygame.transform.scale(self.image, (20, 20))
-        print(self," - ",self.cell)
+        #print(self," - ",self.cell)
 
     def set_position(self, cell):
         if cell != self.cell:
@@ -67,14 +67,14 @@ class Cat:
             else:
                 # If the current cell is the mouse cell, break out of the loop
                 break
-
-        #print(self,"-------F-SCORE = ",self.f_score)
-        if self.f_score <= 2:
-            # Check if the cat is besides the mouse, After this, set gameover to True
-            self.gameover = bool(True)
-        else:
-            # Highlight the path from the mouse to the cat_position cell
-            self.best_move_finder(mouse_cell)
+        self.best_move_finder(mouse_cell)
+        # #print(self,"-------F-SCORE = ",self.f_score)
+        # if self.f_score <= 2:
+        #     # Check if the cat is besides the mouse, After this, set gameover to True
+        #     self.gameover = bool(True)
+        # else:
+        #     # Highlight the path from the mouse to the cat_position cell
+        #     self.best_move_finder(mouse_cell)
 
     def best_move_finder(self, mouse_cell):
         current_cell = mouse_cell.parent        #current cell is in de fastest path de cel VOORDAT hij dezelfde locatie heeft als de muis
@@ -85,10 +85,13 @@ class Cat:
             current_cell = current_cell.parent      #hier is de current cell de beste move, gerekend tov de current cell hierboven
             shortest_path.append(current_cell)
             #print("current_cell na while loop:", current_cell)
+        print(len(shortest_path))
+        if len(shortest_path) >2:
+            self.best_move = shortest_path[-2]
+        else:
+            self.gameover = self.gameover = bool(True)
 
-        self.best_move = shortest_path[-2]
-
-        # print("shortest pat", shortest_path)
+        print("shortest path", shortest_path)
         # print("beste move (want een na laatste move voordat je op target zit)", shortest_path[-2])
 
         # print("best_move?  = ", best_move.position)

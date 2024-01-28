@@ -93,7 +93,7 @@ class Maze:
             if self.grid[new_mouse_x][new_mouse_y] in self.current_mouse.get_neighbours():
                 self.set_mouse(self.grid[new_mouse_x][new_mouse_y])
                 for cat in self.cats:
-                    print(self.mouse.cell)
+                    #print(self.mouse.cell)
                     cat.a_star_search(self.mouse.cell)
 
 
