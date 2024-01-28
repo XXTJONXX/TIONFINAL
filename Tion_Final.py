@@ -17,6 +17,10 @@ class Game:
         self.black_screen = pygame.transform.scale(self.black_screen, (self.size))
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
+        self.UP = []
+        self.DOWN = []
+        self.RIGHT = []
+        self.LEFT = []
 
     def game_loop(self):
         self.handle_events()
@@ -100,18 +104,23 @@ class Game:
         try:
             speech = self.recognizer.recognize_google(audio)
             print("You said:", speech)
-            if "down" in speech:
-                print("Recognized down")
-                self.maze.move_mouse(0, 1)
-            if "up" in speech:
-                print("Recognized up")
-                self.maze.move_mouse(0, -1)
-            if "right" in speech:
-                print("Recognized right")
-                self.maze.move_mouse(1, 0)
-            if "left" in speech:
-                print("Recognized left")
-                self.maze.move_mouse(-1, 0)
+
+            words_list = speech.split()
+            print(words_list)
+            for word in words_list:
+                if word == "down":
+                    print("Recognized down")
+                    self.maze.move_mouse(0, 1)
+                if word == "up":
+                    print("Recognized up")
+                    self.maze.move_mouse(0, -1)
+                if word == "right":
+                    print("Recognized right")
+                    self.maze.move_mouse(1, 0)
+                if word == "left":
+                    print("Recognized left")
+                    self.maze.move_mouse(-1, 0)
+
         except sr.WaitTimeoutError:
             print("Too slow talking")
         except sr.RequestError as e:
