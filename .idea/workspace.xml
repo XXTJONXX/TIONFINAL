@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/Tion_Final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tion_Final.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cat.py" beforeDir="false" afterPath="$PROJECT_DIR$/cat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/mouse.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +53,8 @@
     "Python.maze.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "speechrecognition-improvements"
+    "git-widget-placeholder": "speechrecognition-improvements",
+    "last_opened_file_path": "C:/Users/Tion/Downloads/tutorial06-teams-group-24-julian-jildan-main"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -127,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706449213035</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Bestwerkendelaatsteversie">
+      <option name="closed" value="true" />
+      <created>1706454026604</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706454026604</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

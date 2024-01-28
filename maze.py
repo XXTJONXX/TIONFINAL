@@ -29,10 +29,11 @@ class Maze:
         """make cats"""
         #self.cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)])  # Create a new cat
         self.cats = []  # List to store cats
-        self.num_cats = 2  # Number of cats
+        self.num_cats = 5  # Number of cats
         # Create and initialize cats
-        for _ in range(self.num_cats):
-            cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)])  # Create a new cat
+        for number in range(self.num_cats):
+            cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)], number)  # Create a new cat
+            #cat = Cat(self.grid[0][0],number)  # Create a new cat
             self.cats.append(cat)  # Add the cat to the list
         self.reset_all()
 
@@ -42,7 +43,8 @@ class Maze:
         for cat in self.cats:
             """doe de best move , uiteindelijk doet de kat de beste move dus elke kat heeft dan een nieuwe positie"""
             if cat.best_move is not None:
-                cat.set_position((self.grid[cat.best_move[0]][cat.best_move[1]]))
+                #print(cat," best move = ",cat.best_move)
+                cat.set_position((self.grid[cat.best_move.position[0]][cat.best_move.position[1]]))
         self.reset_state()
         # if self.cat.best_move is not None:
         #     self.set_cat((self.grid[self.cat.best_move[0]][self.cat.best_move[1]]))
@@ -77,18 +79,22 @@ class Maze:
                 self.reset_state()
 
     def move_mouse(self, dx, dy):
-        print("-------MOVE MOUSE: x=" + str(dx) + ", y=" + str(dy))
-        if self.mouse.cell:
-            new_mouse_x = max(0, min(self.mouse.cell.position[0] + dx, self.grid_size[0] - 1))
-            new_mouse_y = max(0, min(self.mouse.cell.position[1] + dy, self.grid_size[1] - 1))
+
+        #print("--++ move muis: x=" + str(dx) + " y=" + str(dy))
+        self.current_mouse = self.mouse.cell
+
+        #print("--++ self.mouse.cell=" + str(self.mouse.cell))
+
+        if self.current_mouse:
+            new_mouse_x = max(0, min(self.current_mouse.position[0] + dx, self.grid_size[0] - 1))
+            new_mouse_y = max(0, min(self.current_mouse.position[1] + dy, self.grid_size[1] - 1))
 
             # Check if there is a link between the current position and the new position
-            if self.grid[new_mouse_x][new_mouse_y] in self.mouse.cell.get_neighbours():
+            if self.grid[new_mouse_x][new_mouse_y] in self.current_mouse.get_neighbours():
                 self.set_mouse(self.grid[new_mouse_x][new_mouse_y])
                 for cat in self.cats:
+                    print(self.mouse.cell)
                     cat.a_star_search(self.mouse.cell)
-                #self.cat.a_star_search(self.mouse.position)
-
 
 
     def print_maze(self):
@@ -137,7 +143,6 @@ class Maze:
      """
 
     def generate_maze(self):
-        print("-------GENERATE MAZE")
         self.reset_all()
         for cat in self.cats:
             wait = [cat.cell]
@@ -274,8 +279,10 @@ class Maze:
         block_y = random.choice(range(3, self.grid_size[1], 5))
         self.del_link(self.grid[self.grid_size[0] - 1][block_y], self.grid[self.grid_size[0] - 1][block_y - 1])
 
-    def gameover(self):
+    def is_game_over(self):
+        stop_game = False
         for cat in self.cats:
             if cat.gameover is True:
-                print("gameover statement")
-                self.active = bool(False)
+                print("One Cat is Game Over")
+                stop_game = True
+        return stop_game

@@ -129,17 +129,8 @@ class Game:
         except sr.UnknownValueError:
             print("Couldn't understand")
 
-    def stopGame(self):
-        self.screen.blit(self.black_screen, (0, 0))
-        pygame.display.flip()
-        time.sleep(3)
-        sys.exit()
-
     def gameover_handling(self):
-        print("GAMEOVER? MAZE active ? = ")
-        print(self.maze.active)
-        self.maze.gameover()
-        if self.maze.active is False:
+        if self.maze.is_game_over():
             # Display the black screen
             self.screen.blit(self.black_screen, (0, 0))
             pygame.display.flip()
