@@ -16,7 +16,6 @@ class GridElement:
         self.distance = None
         self.score = None
         self.color = (64, 64, 64)
-        #self.cat_image = cat_image
 
     """
     Overload the equals operator
@@ -113,10 +112,11 @@ class GridElement:
     """
 
     def draw_grid_element(self, surface, cats, mouse):
-        "draws a mouse_image"
+        """Draws a mouse image"""
         mouse_image_rect = mouse.image.get_rect(topleft=(mouse.cell.position[0] * self.size[0], mouse.cell.position[1] * self.size[1]))
         surface.blit(mouse.image, mouse_image_rect)
-        "draw cats"
+
+        """Draws all the cats"""
         for cat in cats:
             cat_image_rect = cat.image.get_rect(
                 topleft=(cat.cell.position[0] * self.size[0], cat.cell.position[1] * self.size[1]))

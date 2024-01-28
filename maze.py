@@ -5,7 +5,6 @@ from cat import Cat
 from mouse import Mouse
 
 
-
 class Maze:
     """
         Generates a grid based maze based on GridElements
@@ -15,7 +14,7 @@ class Maze:
         """
 
     def __init__(self, grid_size_x, grid_size_y, screen_size):
-        self.active = True
+        self.active = True  # checks whether the game is still active
         self.cat_image = None
         self.grid_size = (grid_size_x, grid_size_y)
         self.cell_width = screen_size[0] / grid_size_x
@@ -25,29 +24,25 @@ class Maze:
             self.grid.append([])
             for y in range(grid_size_y):
                 self.grid[x].append(GridElement(x, y, (self.cell_width, self.cell_height)))
-        self.mouse = Mouse(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)])
+        self.mouse = Mouse(
+            self.grid[random.randint(0, Constants.GRID_COLS - 1)][random.randint(0, Constants.GRID_ROWS - 1)])
         """make cats"""
-        #self.cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)])  # Create a new cat
         self.cats = []  # List to store cats
         self.num_cats = 2  # Number of cats
         # Create and initialize cats
         for number in range(self.num_cats):
-            cat = Cat(self.grid[random.randint(0,Constants.GRID_COLS-1)][random.randint(0,Constants.GRID_ROWS-1)], number)  # Create a new cat
-            #cat = Cat(self.grid[0][0],number)  # Create a new cat
+            cat = Cat(self.grid[random.randint(0, Constants.GRID_COLS - 1)][random.randint(0, Constants.GRID_ROWS - 1)],
+                      number)  # Create a new cat
             self.cats.append(cat)  # Add the cat to the list
         self.reset_all()
 
-
-
     def update(self):
+        """Make the best move for each cat and reset_state"""
         for cat in self.cats:
-            """doe de best move , uiteindelijk doet de kat de beste move dus elke kat heeft dan een nieuwe positie"""
             if cat.best_move is not None:
-                #print(cat," best move = ",cat.best_move)
                 cat.set_position((self.grid[cat.best_move.position[0]][cat.best_move.position[1]]))
         self.reset_state()
-        # if self.cat.best_move is not None:
-        #     self.set_cat((self.grid[self.cat.best_move[0]][self.cat.best_move[1]]))
+
     """
     Resets the GridElements of the maze
     """
@@ -68,10 +63,8 @@ class Maze:
             cat.cell.set_score(0)
         return None
 
-
-
-
     def set_mouse(self, cell):
+        """Set the mouse in a cell ONLY IF the cell is not the cat cell"""
         self.cell = cell
         for cat in self.cats:
             if cell != cat.cell:
@@ -79,12 +72,8 @@ class Maze:
                 self.reset_state()
 
     def move_mouse(self, dx, dy):
-
-        #print("--++ move muis: x=" + str(dx) + " y=" + str(dy))
+        """Method called by main to move mouse 1 square up/down/left/right"""
         self.current_mouse = self.mouse.cell
-
-        #print("--++ self.mouse.cell=" + str(self.mouse.cell))
-
         if self.current_mouse:
             new_mouse_x = max(0, min(self.current_mouse.position[0] + dx, self.grid_size[0] - 1))
             new_mouse_y = max(0, min(self.current_mouse.position[1] + dy, self.grid_size[1] - 1))
@@ -93,9 +82,7 @@ class Maze:
             if self.grid[new_mouse_x][new_mouse_y] in self.current_mouse.get_neighbours():
                 self.set_mouse(self.grid[new_mouse_x][new_mouse_y])
                 for cat in self.cats:
-                    #print(self.mouse.cell)
                     cat.a_star_search(self.mouse.cell)
-
 
     def print_maze(self):
         transposed = list(zip(*self.grid))
@@ -104,14 +91,11 @@ class Maze:
         return None
 
     def draw_maze(self, surface):
+        """draws the entire maze"""
         for row in self.grid:
             for element in row:
-                #element.draw_grid_element(surface, self.cats, self.cat_image, self.mouse, self.mouse_image)
                 element.draw_grid_element(surface, self.cats, self.mouse)
         return None
-
-
-
 
     def possible_neighbours(self, cell):
         neighbours = []
@@ -179,14 +163,11 @@ class Maze:
             self.reset_state()
             return None
 
-
     def generate_open_maze(self):
         self.reset_all()
         for col in self.grid:
             for cell in col:
                 cell.neighbours = self.possible_neighbours(cell)
-
-
 
     def generate_room(self):
         """Generates rooms, with specific positions."""
@@ -280,9 +261,9 @@ class Maze:
         self.del_link(self.grid[self.grid_size[0] - 1][block_y], self.grid[self.grid_size[0] - 1][block_y - 1])
 
     def is_game_over(self):
+        """Check whether the game is over by checking if the cat is so close to the mouse that the game is unwinnable so to say"""
         stop_game = False
         for cat in self.cats:
-            if cat.gameover is True:
-                print("One Cat is Game Over")
+            if cat.game_over is True:
                 stop_game = True
         return stop_game
