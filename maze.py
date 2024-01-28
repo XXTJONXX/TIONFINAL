@@ -77,13 +77,12 @@ class Maze:
                 self.reset_state()
 
     def move_mouse(self, dx, dy):
-        self.current_mouse = self.mouse.cell
-        if self.current_mouse:
-            new_mouse_x = max(0, min(self.current_mouse.position[0] + dx, self.grid_size[0] - 1))
-            new_mouse_y = max(0, min(self.current_mouse.position[1] + dy, self.grid_size[1] - 1))
+        if self.mouse.cell:
+            new_mouse_x = max(0, min(self.mouse.cell.position[0] + dx, self.grid_size[0] - 1))
+            new_mouse_y = max(0, min(self.mouse.cell.position[1] + dy, self.grid_size[1] - 1))
 
             # Check if there is a link between the current position and the new position
-            if self.grid[new_mouse_x][new_mouse_y] in self.current_mouse.get_neighbours():
+            if self.grid[new_mouse_x][new_mouse_y] in self.mouse.cell.get_neighbours():
                 self.set_mouse(self.grid[new_mouse_x][new_mouse_y])
                 for cat in self.cats:
                     cat.a_star_search(self.mouse.cell)

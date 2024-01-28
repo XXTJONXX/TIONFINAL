@@ -17,10 +17,10 @@ class Game:
         self.black_screen = pygame.transform.scale(self.black_screen, (self.size))
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
-        self.UP = []
-        self.DOWN = []
-        self.RIGHT = []
-        self.LEFT = []
+        self.UP = ["up","above","aloft","elevated","skyward","upward","overhead","high","ascendant","onward","upstairs","cup","pup","sup","cusp","pup","hiccough","kup","pup","rup","thrup","tup","yup",]#generated with chatgpt
+        self.DOWN = ["down","Descend","Lower","Drop","Decline","Descending","Sink","Fall","Town","Brown","Clown","Frown","Crown","Gown","Hound","Pound","Round","Sound","Bound","Wound"]#generated with chatgpt, evaluated by me
+        self.RIGHT = ["right","East","Eastward","Starboard","Light","Fight","Bite","Sight","Knight","Height","Might","Tight","Write","Bright"]#generated with chatgpt, evaluated by me
+        self.LEFT = ["left", "west", "Cleft", "Bereft","Theft","Heft","Deft","Craft","Lefty","Weft","Shaft","Thrift"]#generated with chatgpt, evaluated by me
 
     def game_loop(self):
         self.handle_events()
@@ -100,7 +100,7 @@ class Game:
         with self.microphone as listen:
             self.recognizer.adjust_for_ambient_noise(listen)
             print("Say something:")
-            audio = self.recognizer.listen(listen, timeout=2, phrase_time_limit=3)  # Adjust timeout as needed
+            audio = self.recognizer.listen(listen, timeout=2, phrase_time_limit=5)  # Adjust timeout as needed
         try:
             speech = self.recognizer.recognize_google(audio)
             print("You said:", speech)
@@ -108,16 +108,16 @@ class Game:
             words_list = speech.split()
             print(words_list)
             for word in words_list:
-                if word == "down":
+                if word in self.DOWN:
                     print("Recognized down")
                     self.maze.move_mouse(0, 1)
-                if word == "up":
+                if word in self.UP:
                     print("Recognized up")
                     self.maze.move_mouse(0, -1)
-                if word == "right":
+                if word in self.RIGHT:
                     print("Recognized right")
                     self.maze.move_mouse(1, 0)
-                if word == "left":
+                if word in self.LEFT:
                     print("Recognized left")
                     self.maze.move_mouse(-1, 0)
 

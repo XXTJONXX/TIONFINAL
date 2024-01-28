@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="kapot nog">
+    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="werkt heel goed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tion_Final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tion_Final.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Refactoring-speech-recognition" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,7 +50,7 @@
     "Python.maze.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "speechrecognition-improvements"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -100,7 +101,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706446142757</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="kapot nog">
+      <option name="closed" value="true" />
+      <created>1706447934941</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706447934941</updated>
+    </task>
+    <task id="LOCAL-00006" summary="werkt heel goed">
+      <option name="closed" value="true" />
+      <created>1706447956148</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706447956148</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,6 +147,7 @@
     <MESSAGE value="Goede versie" />
     <MESSAGE value="BETERE versie" />
     <MESSAGE value="kapot nog" />
-    <option name="LAST_COMMIT_MESSAGE" value="kapot nog" />
+    <MESSAGE value="werkt heel goed" />
+    <option name="LAST_COMMIT_MESSAGE" value="werkt heel goed" />
   </component>
 </project>
