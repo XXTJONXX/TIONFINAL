@@ -72,7 +72,7 @@ class Maze:
                 self.reset_state()
 
     def move_mouse(self, dx, dy):
-        """Method called by main to move mouse 1 square up/down/left/right"""
+        """Method called by main class to move mouse 1 cell up/down/left/right"""
         self.current_mouse = self.mouse.cell
         if self.current_mouse:
             new_mouse_x = max(0, min(self.current_mouse.position[0] + dx, self.grid_size[0] - 1))

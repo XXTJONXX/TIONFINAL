@@ -74,9 +74,9 @@ class Cat:
             current_cell = current_cell.parent
             shortest_path.append(current_cell)
 
-        if len(shortest_path) > 2:              #only give the best move if there are more than 2 moves left, because otherwise gameover
-                                                #With >1 there will often be 1 square between mouse and cat which can lead to almost infinte fleeing,
-                                                # therefore 2 is chosen
+        if len(shortest_path) > 1:              #only give the best move if there are more than 1 moves left, because otherwise gameover
+                                                #With >1 there will often be 1 square between mouse and cat which can lead to almost infinte fleeing until you make a failure,
+
             self.best_move = shortest_path[-2]
         else:
             self.game_over = self.game_over = bool(True)

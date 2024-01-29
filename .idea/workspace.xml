@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="beste versie anno 00:29 zonder comments">
+    <list default="true" id="a8960fa2-62b4-40c4-b718-0dc99a783d9d" name="Changes" comment="1:07 Finalized with comments everywhere">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tion_Final.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tion_Final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cat.py" beforeDir="false" afterPath="$PROJECT_DIR$/cat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speechrecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/speechrecognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Tion_Final.executor": "Run",
-    "Python.cat.executor": "Run",
-    "Python.grid_element.executor": "Run",
-    "Python.maze.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "speechrecognition-improvements",
-    "last_opened_file_path": "C:/Users/Tion/Downloads/tutorial06-teams-group-24-julian-jildan-main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Tion_Final.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cat.executor&quot;: &quot;Run&quot;,
+    &quot;Python.grid_element.executor&quot;: &quot;Run&quot;,
+    &quot;Python.maze.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;speechrecognition-improvements&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Tion/Downloads/tutorial06-teams-group-24-julian-jildan-main&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -177,7 +174,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706484583281</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="00:48 with comments for main, sr, cat">
+      <option name="closed" value="true" />
+      <created>1706485730794</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706485730794</updated>
+    </task>
+    <task id="LOCAL-00015" summary="1:07 Finalized with comments everywhere">
+      <option name="closed" value="true" />
+      <created>1706486863404</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706486863405</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +226,8 @@
     <MESSAGE value="beste versie anno 22:26" />
     <MESSAGE value="beste versie anno 22:57" />
     <MESSAGE value="beste versie anno 00:29 zonder comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="beste versie anno 00:29 zonder comments" />
+    <MESSAGE value="00:48 with comments for main, sr, cat" />
+    <MESSAGE value="1:07 Finalized with comments everywhere" />
+    <option name="LAST_COMMIT_MESSAGE" value="1:07 Finalized with comments everywhere" />
   </component>
 </project>
