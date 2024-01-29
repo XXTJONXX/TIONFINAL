@@ -26,11 +26,9 @@ class Game:
         self.draw_components()
 
     def update_game(self):
-        self.maze.update()
         self.game_over_handling()
 
     def draw_components(self):
-        if self.maze.active:
             self.screen.fill([64, 64, 64])
             self.maze.draw_maze(self.screen)
             pygame.display.flip()

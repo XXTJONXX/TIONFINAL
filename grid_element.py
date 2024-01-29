@@ -142,27 +142,6 @@ class GridElement:
                 draw.line(surface, (173, 216, 230), (self.position[0] * self.size[0], self.position[1] * self.size[1]),
                           (self.position[0] * self.size[0], (self.position[1] + 1) * self.size[1]), 2)
 
-        # This draw an arrow to from the parent
-        # if self.parent is not None:
-        #
-        #     vector = self.direction(self.parent)
-        #
-        #     center = ((self.position[0]+0.5) * self.size[0],(self.position[1]+0.5) * self.size[1])
-        #
-        #     if vector[0] !=0:
-        #         left_point = (center[0]+(vector[0]-vector[1])*self.size[0]/5,center[1]+(vector[1]-vector[0])*self.size[0]/5)
-        #         right_point = (center[0] + (vector[0] - vector[1]) * self.size[0] / 5, center[1] + (vector[1] + vector[0]) * self.size[0] / 5)
-        #     else:
-        #         left_point = (center[0] + (vector[0] - vector[1]) * self.size[0] / 5,
-        #                       center[1] + (vector[1] + vector[0]) * self.size[0] / 5)
-        #         right_point = (center[0] + (vector[0] + vector[1]) * self.size[0] / 5,
-        #                        center[1] + (vector[1] + vector[0]) * self.size[0] / 5)
-        #     draw.polygon(surface, (100,100,100),(center,left_point,right_point))
-        #     entry_point= (center[0]+vector[0]*self.size[0]/2,center[1]+vector[1]*self.size[1]/2)
-        #     end_point = (center[0] + vector[0] * self.size[0] / 5, center[1] + vector[1] * self.size[1] / 5)
-        #     draw.line(surface, (100,100,100),end_point,entry_point,int(self.size[0]/20)+1)
-
-
 
     def print_neighbours(self):
 

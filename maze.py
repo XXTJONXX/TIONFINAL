@@ -1,4 +1,7 @@
 import random
+import threading
+import time
+
 from grid_element import GridElement
 from helpers.constants import Constants
 from cat import Cat
@@ -14,7 +17,7 @@ class Maze:
         """
 
     def __init__(self, grid_size_x, grid_size_y, screen_size):
-        self.active = True  # checks whether the game is still active
+        self.game_started = bool(False)
         self.cat_image = None
         self.grid_size = (grid_size_x, grid_size_y)
         self.cell_width = screen_size[0] / grid_size_x
@@ -34,14 +37,23 @@ class Maze:
             cat = Cat(self.grid[random.randint(0, Constants.GRID_COLS - 1)][random.randint(0, Constants.GRID_ROWS - 1)],
                       number)  # Create a new cat
             self.cats.append(cat)  # Add the cat to the list
+
         self.reset_all()
 
+    def start_game(self):
+        """Checks if the game has started (aka if the mouse has moved) so the cats can make moves"""
+        self.game_started = bool(True)
+        self.cat_timer()
+
+
     def update(self):
-        """Make the best move for each cat and reset_state"""
-        for cat in self.cats:
-            if cat.best_move is not None:
-                cat.set_position((self.grid[cat.best_move.position[0]][cat.best_move.position[1]]))
-        self.reset_state()
+        """Make the best move for each cat and reset_state. This method is called by the cat_timer function so each cat moves every x seconds"""
+        if self.game_started:
+            for cat in self.cats:
+                cat.a_star_search(self.mouse.cell)
+                if cat.best_move is not None:
+                    cat.set_position((self.grid[cat.best_move.position[0]][cat.best_move.position[1]]))
+            self.reset_state()
 
     """
     Resets the GridElements of the maze
@@ -55,9 +67,6 @@ class Maze:
         return None
 
     def reset_state(self):
-        # for row in self.grid:
-        #     for cell in row:
-        #         cell.reset_state()
         for cat in self.cats:
             cat.cell.set_distance(0)
             cat.cell.set_score(0)
@@ -73,6 +82,9 @@ class Maze:
 
     def move_mouse(self, dx, dy):
         """Method called by main class to move mouse 1 cell up/down/left/right"""
+        if not self.game_started:
+            self.start_game()
+
         self.current_mouse = self.mouse.cell
         if self.current_mouse:
             new_mouse_x = max(0, min(self.current_mouse.position[0] + dx, self.grid_size[0] - 1))
@@ -81,8 +93,6 @@ class Maze:
             # Check if there is a link between the current position and the new position
             if self.grid[new_mouse_x][new_mouse_y] in self.current_mouse.get_neighbours():
                 self.set_mouse(self.grid[new_mouse_x][new_mouse_y])
-                for cat in self.cats:
-                    cat.a_star_search(self.mouse.cell)
 
     def print_maze(self):
         transposed = list(zip(*self.grid))
@@ -259,6 +269,17 @@ class Maze:
             self.del_link(self.grid[n + 1][block_y], self.grid[n + 1][block_y - 1])
         block_y = random.choice(range(3, self.grid_size[1], 5))
         self.del_link(self.grid[self.grid_size[0] - 1][block_y], self.grid[self.grid_size[0] - 1][block_y - 1])
+
+    def cat_timer(self):
+        """This method was invented by chatGPT and used accordingly, so a cat makes a move every .5 second"""
+        def wrapper():
+            while True:
+                self.update()
+                time.sleep(0.5)
+
+        thread = threading.Thread(target=wrapper)
+        thread.daemon = True  # Daemonize the thread so it automatically dies when the program exits
+        thread.start()
 
     def is_game_over(self):
         """Check whether the game is over by checking if the cat is so close to the mouse that the game is unwinnable so to say"""
