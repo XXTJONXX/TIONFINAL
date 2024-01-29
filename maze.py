@@ -55,9 +55,9 @@ class Maze:
         return None
 
     def reset_state(self):
-        for row in self.grid:
-            for cell in row:
-                cell.reset_state()
+        # for row in self.grid:
+        #     for cell in row:
+        #         cell.reset_state()
         for cat in self.cats:
             cat.cell.set_distance(0)
             cat.cell.set_score(0)
